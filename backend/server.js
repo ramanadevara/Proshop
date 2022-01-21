@@ -2,9 +2,15 @@ const express = require("express")
 
 const products = require("./data/products")
 
+const dontenv = require("dotenv")
+
+dontenv.config()
+
+const PORT = process.env.PORT
+
 const app = express()
 
-app.listen(5000, console.log("Server is running"))
+app.listen(PORT, console.log(`Server is running on Port ${PORT}`))
 
 app.get("/", (req, res) => {
   res.send("API is running")
