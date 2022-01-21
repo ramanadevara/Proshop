@@ -1,5 +1,4 @@
 import React from "react"
-import products from "../products"
 import { useParams } from "react-router-dom"
 import {
   Row,
@@ -13,9 +12,22 @@ import {
 import { Link } from "react-router-dom"
 import { LinkContainer } from "react-router-bootstrap"
 import Rating from "../components/Rating"
+import { useState, useEffect } from "react"
+import axios from "axios"
+
 const ProductScreen = () => {
   const params = useParams()
-  const product = products.find((product) => product._id === params.id)
+  const [product, setProduct] = useState({})
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const { data } = await axios.get(`/api/products/${params.id}`)
+      setProduct(data)
+    }
+
+    fetchProduct()
+  }, [])
+
   return (
     <>
       <LinkContainer to={"/"}>
