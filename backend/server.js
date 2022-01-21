@@ -1,10 +1,8 @@
-const express = require("express")
+import express from "express"
+import products from "./data/products.js"
+import dotenv from "dotenv"
 
-const products = require("./data/products")
-
-const dontenv = require("dotenv")
-
-dontenv.config()
+dotenv.config()
 
 const PORT = process.env.PORT
 
