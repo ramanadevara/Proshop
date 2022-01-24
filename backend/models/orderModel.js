@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 import { boolean } from "webidl-conversions"
-import User from "./userModel"
+import User from "./userModel.js"
 
 const orderSchema = mongoose.Schema({
   user: {
@@ -101,7 +101,7 @@ const orderSchema = mongoose.Schema({
   },
 
   isPaid: {
-    type: boolean,
+    type: Boolean,
     default: false,
   },
 
@@ -110,7 +110,7 @@ const orderSchema = mongoose.Schema({
   },
 
   isDelivered: {
-    type: boolean,
+    type: Boolean,
     default: false,
   },
 
