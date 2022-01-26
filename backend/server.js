@@ -14,7 +14,7 @@ const app = express()
 
 app.use(errorHandler)
 
-app.use(notFound)
+//app.use(notFound)
 
 app.listen(PORT, console.log(`Server is running on Port ${PORT}`))
 
