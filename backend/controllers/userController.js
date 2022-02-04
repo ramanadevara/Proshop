@@ -29,4 +29,15 @@ const authUser = asyncHandler(async (req, res) => {
   }
 })
 
-export default authUser
+const getUserProfile = asyncHandler(async (req, res) => {
+  const user = req.user
+
+  res.json({
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+    isAdmin: user.isAdmin,
+  })
+})
+
+export { authUser, getUserProfile }
