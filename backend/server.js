@@ -23,7 +23,7 @@ app.listen(PORT, console.log(`Server is running on Port ${PORT}`))
 
 app.use("/api/products", productRouter)
 
-app.use("/user", userRouter)
+app.use("/api/users", userRouter)
 
 app.get("/", (req, res) => {
   res.send("API is running")
