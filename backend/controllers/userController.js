@@ -70,7 +70,32 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 })
 
+const updateUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id)
+
+  user.name = req.body.name || user.name
+  user.email = req.body.email || user.email
+  if (req.body.password) {
+    user.password = req.body.password
+  }
+
+  const updatedUser = await user.save()
+
+  if (updatedUser) {
+    res.status(201).json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+      token: generateToken(user._id),
+    })
+  } else {
+    res.status(401)
+    throw new Error("User not found")
+  }
+})
+
 const testUser = (req, res) => {
   res.json("Success")
 }
-export { authUser, getUserProfile, registerUser, testUser }
+export { authUser, getUserProfile, registerUser, updateUserProfile, testUser }
