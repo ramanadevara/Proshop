@@ -1,7 +1,7 @@
 import React from "react"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
-import { Container } from "react-bootstrap"
+import { Container, Placeholder } from "react-bootstrap"
 import HomeScreen from "./Screens/HomeScreen"
 import ProductScreen from "./Screens/ProductScreen"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
@@ -10,6 +10,8 @@ import LoginScreen from "./Screens/LoginScreen"
 import RegisterScreen from "./Screens/RegisterScreen"
 import ProfileScreen from "./Screens/ProfileScreen"
 import ShippingScreen from "./Screens/ShippingScreen"
+import PaymentScreen from "./Screens/PaymentScreen"
+import PlaceOrderScreen from "./Screens/PlaceOrderScreen"
 const App = () => {
   return (
     <Router>
@@ -25,6 +27,8 @@ const App = () => {
             <Route path='/register' element={<RegisterScreen />}></Route>
             <Route path='/profile' element={<ProfileScreen />}></Route>
             <Route path='/shipping' element={<ShippingScreen />}></Route>
+            <Route path='/payment' element={<PaymentScreen />}></Route>
+            <Route path='/placeOrder' element={<PlaceOrderScreen />}></Route>
           </Routes>
         </main>
       </Container>
