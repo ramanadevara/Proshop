@@ -20,7 +20,7 @@ const LoginScreen = () => {
 
   const { search } = useLocation()
 
-  const redirect = search ? search.split("=")[1] : "/"
+  const redirect = search ? "/" + search.split("=")[1] : "/"
 
   const dispatch = useDispatch()
 
@@ -37,7 +37,8 @@ const LoginScreen = () => {
 
   useEffect(() => {
     //console.log(Object.entries(userInfo).length)
-
+    console.log(search)
+    console.log(redirect)
     if (
       typeof userInfo != "undefined" &&
       !(Object.entries(userInfo).length === 0)
