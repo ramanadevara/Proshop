@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import {
   Button,
   Card,
@@ -8,8 +8,9 @@ import {
   ListGroupItem,
   Row,
 } from "react-bootstrap"
-import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { Link, useNavigate } from "react-router-dom"
+import { createOrder } from "../actions/orderActions"
 import CheckoutSteps from "../components/CheckoutSteps"
 import Message from "../components/Message"
 
@@ -26,9 +27,35 @@ const PlaceOrderScreen = () => {
     Number(cart.itemPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)
   ).toFixed(2)
 
-  const placeOrderHandler = () => {}
+  const orderCreate = useSelector((state) => state.orderCreate)
+  const { success, error, order } = orderCreate
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (success) {
+      navigate(`/order/${order._id}`)
+    }
+  }, [success])
+
+  const dispatch = useDispatch()
+  const placeOrderHandler = () => {
+    console.log(cart.cartItems)
+    dispatch(
+      createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice: cart.itemPrice,
+        taxPrice: cart.taxPrice,
+        shippingPrice: cart.shippingPrice,
+        totalPrice: cart.totalPrice,
+      })
+    )
+  }
   return (
     <>
+      {error && <Message variant='danger'>{error}</Message>}
       <CheckoutSteps step1 step2 step3 step4 />
       <Row>
         <Col md={8}>

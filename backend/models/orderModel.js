@@ -12,22 +12,18 @@ const orderSchema = mongoose.Schema({
     {
       name: {
         type: String,
-        required: true,
       },
 
-      quantity: {
+      qty: {
         type: String,
-        required: true,
       },
 
       image: {
         type: String,
-        required: true,
       },
 
       price: {
         type: String,
-        required: true,
       },
 
       product: {
@@ -67,22 +63,18 @@ const orderSchema = mongoose.Schema({
   paymentResult: {
     id: {
       type: String,
-      required: true,
     },
 
     status: {
       type: String,
-      required: true,
     },
 
     updateTime: {
       type: Date,
-      required: true,
     },
 
     emailAddress: {
       type: String,
-      required: true,
     },
   },
 
