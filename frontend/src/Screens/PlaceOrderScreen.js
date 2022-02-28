@@ -30,6 +30,9 @@ const PlaceOrderScreen = () => {
   const orderCreate = useSelector((state) => state.orderCreate)
   const { success, error, order } = orderCreate
 
+  const user = useSelector((state) => state.userLogin)
+  const { userInfo } = user
+
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -50,6 +53,7 @@ const PlaceOrderScreen = () => {
         taxPrice: cart.taxPrice,
         shippingPrice: cart.shippingPrice,
         totalPrice: cart.totalPrice,
+        user: userInfo,
       })
     )
   }

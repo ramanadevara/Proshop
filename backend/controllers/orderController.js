@@ -10,6 +10,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
     taxPrice,
     shippingPrice,
     totalPrice,
+    user,
   } = req.body
 
   if (orderItems && orderItems.length === 0) {
@@ -24,7 +25,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
       taxPrice,
       shippingPrice,
       totalPrice,
-      user: req.user_id,
+      user,
     })
 
     const createdOrder = await order.save()
@@ -32,15 +33,14 @@ const addOrderItems = asyncHandler(async (req, res) => {
   }
 })
 
-/*
-const getProductById = asyncHandler(async (req, res) => {
-  const product = await Product.findById(req.params.id)
+const getOrderById = asyncHandler(async (req, res) => {
+  const order = await Order.findById(req.params.id)
 
-  if (product) {
-    res.json(product)
+  if (order) {
+    res.json(order)
   } else {
-    res.status(404).json({ message: "Product not found" })
+    res.status(404).json({ message: "Ordernot found" })
   }
-})*/
+})
 
-export { addOrderItems }
+export { addOrderItems, getOrderById }
